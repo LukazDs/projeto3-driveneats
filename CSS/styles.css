@@ -83,6 +83,11 @@ body {
     align-items: center;
     cursor: pointer;
 }
+.middle-items-border-one, 
+.middle-items-border-two, 
+.middle-items-border-three {
+    border: solid 6px #32B72F;
+}
 .middle-items > div > img {
     width: 144px;
     height: 87px;
@@ -90,7 +95,6 @@ body {
     object-fit: cover;
 }
 .item {
-    
     width: 144px;
     display: flex;
     flex-direction: column;
@@ -139,11 +143,15 @@ body {
     height: 61px;
     left: 25px;
     bottom: 16px;
-    background: #CBCBCB;
+    background-color: #CBCBCB;
     border-radius: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+.bottom-content-triggered {
+    background-color: #32B72F;
 }
 .bottom-text {
     width: 200px;
