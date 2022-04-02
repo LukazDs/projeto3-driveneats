@@ -1,6 +1,9 @@
-let firstfood = ''
-let secondfood = ''
-let thirdfood = ''
+let firstfood = '';
+let secondfood = '';
+let thirdfood = '';
+let firstprice = '';
+let secondprice = '';
+let thirdprice = '';
 
 function chooseFood(elemento) {
     const food = document.querySelector(".middle-items-border-one");
@@ -12,6 +15,8 @@ function chooseFood(elemento) {
     elemento.classList.toggle("middle-items-border-one");
     elemento.querySelector(".ball").classList.toggle("ball-green-one");
     firstfood = elemento.querySelector(".middle-first-text").innerHTML;
+    firstprice = elemento.querySelector(".product-money").innerHTML
+    firstprice.replace('R$', '')
     if (firstfood !== '' && secondfood !== '' && thirdfood !== '') {
         button = document.querySelector(".bottom-content");
         button.classList.add("bottom-content-triggered");
@@ -29,6 +34,7 @@ function chooseDrink(elemento) {
     elemento.classList.toggle("middle-items-border-two");
     elemento.querySelector(".ball").classList.toggle("ball-green-two");
     secondfood = elemento.querySelector(".middle-first-text").innerHTML;
+    secondprice = elemento.querySelector(".product-money").innerHTML
     if (firstfood !== '' && secondfood !== '' && thirdfood !== '') {
         button = document.querySelector(".bottom-content");
         button.classList.add("bottom-content-triggered");
@@ -46,14 +52,29 @@ function chooseDessert(elemento) {
     }
     elemento.classList.toggle("middle-items-border-three");
     elemento.querySelector(".ball").classList.toggle("ball-green-three");
-
-    //nome da comida
+    //nome da comida e preço
     thirdfood = elemento.querySelector(".middle-first-text").innerHTML;
-
+    thirdprice = elemento.querySelector(".product-money").innerHTML
     //ativa botão
     if (firstfood !== '' && secondfood !== '' && thirdfood !== '') {
         button = document.querySelector(".bottom-content");
         button.classList.add("bottom-content-triggered");
         document.querySelector(".bottom-text").innerHTML = "Fechar pedido";
+    }
+}
+
+function finalizeOrder() {
+    //conversão
+    firstprice = firstprice.replace('R$ ', '')
+    secondprice = secondprice.replace('R$ ', '')
+    thirdprice = thirdprice.replace('R$ ', '')
+    //valor a ser pago
+    let total = parseFloat(firstprice.replace(',', '.')) + parseFloat(secondprice.replace(',', '.')) + parseFloat(thirdprice.replace(',', '.'));
+    //msg final
+    let msg; 
+    msg = "Olá, gostaria de fazer o pedido:"+ "\n- Prato: " + firstfood + "\n- Bebida: " + secondfood + "\n- Sobremessa: " + thirdfood + "\nTotal: R$ " + String(total.toFixed(2));
+    //link
+    if (firstfood !== '' && secondfood !== '' && thirdfood !== '') {
+        window.open("https://wa.me/+5521999999999?text=" + encodeURIComponent(msg))
     }
 }
