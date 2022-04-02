@@ -148,7 +148,7 @@ ion-icon {
     justify-content: center;
     align-items: center;
 }
-.ball-green {
+.ball-green-one, .ball-green-two, .ball-green-three{
     background-color: green;
 }
 
