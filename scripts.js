@@ -63,18 +63,47 @@ function chooseDessert(elemento) {
     }
 }
 
-function finalizeOrder() {
+function orderRequest() {
+    if (firstfood !== '' && secondfood !== '' && thirdfood !== '') {
+        const bonus = document.querySelector(".review-region");
+        bonus.classList.remove("request");
+        textPlates();
+    }
+}
+
+function toBack () {
+    document.querySelector(".review-region").classList.add("request")
+}
+
+function toFinally() {
+    let name = prompt("Qual é o seu nome?") 
+    let address = prompt("Qual é o seu endereço?") 
+    window.open("https://wa.me/+554396630268?text=" + encodeURIComponent(finalMessage(name, address)))
+}
+
+function textPlates() {
+    //plates
+    document.querySelector(".food").innerHTML = firstfood;
+    document.querySelector(".price-food").innerHTML = firstprice;
+    document.querySelector(".drink").innerHTML = secondfood;
+    document.querySelector(".price-drink").innerHTML = secondprice;
+    document.querySelector(".dessert").innerHTML = thirdfood;
+    document.querySelector(".price-dessert").innerHTML = thirdprice;
+    document.querySelector(".price-total").innerHTML = "R$ " + totalValue().toFixed(2);
+}
+
+function totalValue() {
     //conversão
     firstprice = firstprice.replace('R$ ', '')
     secondprice = secondprice.replace('R$ ', '')
     thirdprice = thirdprice.replace('R$ ', '')
     //valor a ser pago
     let total = parseFloat(firstprice.replace(',', '.')) + parseFloat(secondprice.replace(',', '.')) + parseFloat(thirdprice.replace(',', '.'));
-    //msg final
-    let msg; 
-    msg = "Olá, gostaria de fazer o pedido:"+ "\n- Prato: " + firstfood + "\n- Bebida: " + secondfood + "\n- Sobremessa: " + thirdfood + "\nTotal: R$ " + String(total.toFixed(2));
-    //link
-    if (firstfood !== '' && secondfood !== '' && thirdfood !== '') {
-        window.open("https://wa.me/+5521999999999?text=" + encodeURIComponent(msg))
-    }
+    return total;
+}
+function finalMessage(name, address) {
+     //msg final
+     let msg; 
+     msg = "Olá, gostaria de fazer o pedido:"+ "\n- Prato: " + firstfood + "\n- Bebida: " + secondfood + "\n- Sobremesa: " + thirdfood + "\nTotal: R$ " + String( totalValue().toFixed(2)) + "\n" + "\nNome: " + name + "\nEndereço: " + address;
+     return msg;
 }
