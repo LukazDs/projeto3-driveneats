@@ -95,7 +95,7 @@ ion-icon {
 .button-finally, .button-cancel {
     
     
-    border-radius: 9px;
+    border-radius: 39px;
     border-width: 0px;
     width: 100%;
     height: 52px;
@@ -110,6 +110,7 @@ ion-icon {
     letter-spacing: 0.018em;
     color: #FFFFFF;
     background-color: #50D074;
+    cursor: pointer;
  
 }
 
