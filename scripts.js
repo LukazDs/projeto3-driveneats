@@ -76,8 +76,8 @@ function toBack () {
 }
 
 function toFinally() {
-    let name = prompt("Qual é o seu nome?") 
-    let address = prompt("Qual é o seu endereço?") 
+    const name = prompt("Qual é o seu nome?") 
+    const address = prompt("Qual é o seu endereço?") 
     window.open("https://wa.me/+554396630268?text=" + encodeURIComponent(finalMessage(name, address)))
 }
 
@@ -89,16 +89,16 @@ function textPlates() {
     document.querySelector(".price-drink").innerHTML = secondprice;
     document.querySelector(".dessert").innerHTML = thirdfood;
     document.querySelector(".price-dessert").innerHTML = thirdprice;
-    document.querySelector(".price-total").innerHTML = "R$ " + totalValue().toFixed(2);
+    document.querySelector(".price-total").innerHTML = "R$ " + String(totalValue().toFixed(2)).replace(".", ",");
 }
 
 function totalValue() {
     //conversão
-    firstprice = firstprice.replace('R$ ', '')
-    secondprice = secondprice.replace('R$ ', '')
-    thirdprice = thirdprice.replace('R$ ', '')
+    let firstpricenumber = firstprice.replace('R$ ', '')
+    let secondpricenumber = secondprice.replace('R$ ', '')
+    let thirdpricenumber = thirdprice.replace('R$ ', '')
     //valor a ser pago
-    let total = parseFloat(firstprice.replace(',', '.')) + parseFloat(secondprice.replace(',', '.')) + parseFloat(thirdprice.replace(',', '.'));
+    let total = parseFloat(firstpricenumber.replace(',', '.')) + parseFloat(secondpricenumber.replace(',', '.')) + parseFloat(thirdpricenumber.replace(',', '.'));
     return total;
 }
 function finalMessage(name, address) {
